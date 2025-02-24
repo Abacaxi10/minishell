@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:18:44 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/21 17:15:11 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:22:57 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_data
 	char		**raw_tokens;
 	char		*input;
 	char		*content;
+	char		*cmd_path;
 	int			token_count;
 	int			start;
 	int			flag_error;
@@ -200,6 +201,10 @@ void			make_exp(t_data *data, char **env);
 // parsing.c
 void			parsing(t_data *data);
 
+// parsing2.c
+int				join_sub_token(t_data *data, t_token *token, int j);
+void			free_sub_tokens(t_token *token);
+
 // // parsing_sub_token.c
 int				find_words(t_data *data, int *i);
 int				number_of_sub_token(t_data *data, int i);
@@ -211,9 +216,12 @@ void			sub_token_word(t_token *token, t_data *data, int *i,
 // free.c
 void			free_data(t_data *data);
 void			free_all_exit(t_data *data, int exit_code);
-void			free_sub_token(t_sub_token *sub_token);
-void			free_tokens(t_data *data);
 void			free_command(t_command *command);
 void			free_test(t_data *data);
+
+// free2.c
+void			free_sub_token(t_sub_token *sub_token);
+void			free_token(t_token *token);
+void			free_tokens(t_data *data);
 
 #endif

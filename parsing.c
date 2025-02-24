@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:24:57 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/24 17:59:27 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:25:58 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ void	find_end_of_word(t_data *data, int *i)
 void	parse_word(t_data *data, int *i)
 {
 	t_token	token;
-	char	*tmp;
-	char	*new_tmp;
 	int		start;
 	int		j;
 
@@ -107,42 +105,13 @@ void	parse_word(t_data *data, int *i)
 	token.type = TOKEN_WORD;
 	token.sub_tokens = NULL;
 	analyse_quotes(&token, data);
-	tmp = ft_strdup("");
-	if (!tmp)
-	{
-		free(data->content);
-		return ;
-	}
 	j = 0;
-	while (token.sub_tokens && token.sub_tokens[j])
-	{
-		new_tmp = ft_strjoin(tmp, token.sub_tokens[j]->content);
-		if (!new_tmp)
-		{
-			free(tmp);
-			free(data->content);
-			return ;
-		}
-		free(tmp);
-		tmp = new_tmp;
-		j++;
-	}
-	token.value = tmp;
+	if (join_sub_token(data, &token, j) == 1)
+		return ;
 	add_token(data, token.value, ft_strlen(token.value), TOKEN_WORD);
-	free(tmp);
 	free(data->content);
-	    j = 0;
-    if (token.sub_tokens)
-    {
-        while (token.sub_tokens[j])
-        {
-            free_sub_token(token.sub_tokens[j]);
-            token.sub_tokens[j] = NULL;
-            j++;
-        }
-        free(token.sub_tokens);
-        token.sub_tokens = NULL;
-    }
+	if (token.sub_tokens)
+		free_sub_tokens(&token);
 }
 
 void	parsing(t_data *data)

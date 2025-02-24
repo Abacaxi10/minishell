@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:22:09 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/19 18:47:43 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:52:42 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	sub_token_quotes(t_token *token, t_data *data, int *i,
 			start, *i - start);
 	if (quote_type == '"')
 	{
-		token->sub_tokens[*sub_token_count]->content = manage_dollar(token->sub_tokens[*sub_token_count]->content,
+		token->sub_tokens[*sub_token_count]->content
+			= manage_dollar(token->sub_tokens[*sub_token_count]->content,
 				data);
 	}
 	(*sub_token_count)++;

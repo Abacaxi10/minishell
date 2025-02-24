@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:10:21 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/21 17:21:00 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:52:04 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_data(t_data *data)
 
 void	init_command(t_data *data)
 {
-	if (data->command) // Libérer l'ancienne commande si elle existe
+	if (data->command)
 	{
 		free_command(data->command);
 		free(data->command);

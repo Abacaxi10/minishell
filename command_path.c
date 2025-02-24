@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:03:09 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/20 17:36:05 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:51:27 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,50 @@ char	*ft_strjoin_with_slash(const char *s1, const char *s2)
 	return (result);
 }
 
+void	free_path_dirs(char **path_dirs)
+{
+	int	j;
+
+	j = 0;
+	while (path_dirs[j])
+	{
+		free(path_dirs[j]);
+		j++;
+	}
+	free(path_dirs);
+}
+
+char	*find_path_access(char **path_dirs, char *cmd)
+{
+	int		i;
+	char	*full_path;
+
+	i = 0;
+	while (path_dirs[i])
+	{
+		full_path = ft_strjoin_with_slash(path_dirs[i], cmd);
+		if (!full_path)
+		{
+			free_path_dirs(path_dirs);
+			return (NULL);
+		}
+		if (access(full_path, X_OK) == 0)
+		{
+			free_path_dirs(path_dirs);
+			return (full_path);
+		}
+		free(full_path);
+		i++;
+	}
+	free_path_dirs(path_dirs);
+	return (NULL);
+}
+
 char	*find_command_path(char *cmd, t_data *data)
 {
 	char	**path_dirs;
 	char	*path_env;
 	char	*full_path;
-	int		i;
-	int		j;
 
 	if (!cmd || !data)
 		return (NULL);
@@ -42,43 +79,8 @@ char	*find_command_path(char *cmd, t_data *data)
 		return (NULL);
 	path_dirs = ft_split(path_env, ':');
 	free(path_env);
-	i = 0;
-	while (path_dirs[i])
-	{
-		full_path = ft_strjoin_with_slash(path_dirs[i], cmd);
-		if (!full_path)
-		{
-			j = 0;
-			while (path_dirs[j])
-			{
-				free(path_dirs[j]);
-				j++;
-			}
-			free(path_dirs);
-			return (NULL);
-		}
-		if (access(full_path, X_OK) == 0)
-		{
-			j = 0;
-			while (path_dirs[j])
-			{
-				free(path_dirs[j]);
-				j++;
-			}
-			free(path_dirs);
-			return (full_path);
-		}
-		free(full_path);
-		i++;
-	}
-	j = 0;
-	while (path_dirs[j])
-	{
-		free(path_dirs[j]);
-		j++;
-	}
-	free(path_dirs);
-	return (NULL);
+	full_path = find_path_access(path_dirs, cmd);
+	return (full_path);
 }
 
 char	*find_path(t_data *data)
