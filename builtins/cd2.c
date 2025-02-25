@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:50 by rabatist          #+#    #+#             */
-/*   Updated: 2025/02/15 00:44:49 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/24 21:13:36 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	update_pwd_env(t_data *data)
 			i++;
 		}
 	}
-	update_pwd_exp(data);
 }
 
 void	update_pwd_exp(t_data *data)

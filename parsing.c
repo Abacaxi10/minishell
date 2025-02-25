@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:24:57 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/24 17:25:58 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/24 19:07:05 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	parse_word(t_data *data, int *i)
 	if (join_sub_token(data, &token, j) == 1)
 		return ;
 	add_token(data, token.value, ft_strlen(token.value), TOKEN_WORD);
+	free(token.value);
 	free(data->content);
 	if (token.sub_tokens)
 		free_sub_tokens(&token);

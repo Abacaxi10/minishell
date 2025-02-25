@@ -6,7 +6,7 @@
 #    By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/05 19:02:17 by nbonnet           #+#    #+#              #
-#    Updated: 2025/02/24 17:22:20 by nbonnet          ###   ########.fr        #
+#    Updated: 2025/02/24 20:38:55 by nbonnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = 	builtins/pwd.c \
 		redirect.c \
 		make_env.c \
 		expand.c \
+		expand2.c \
 		signals.c \
 		redirect_utils.c \
 		parsing.c \
@@ -44,6 +45,7 @@ SRCS = 	builtins/pwd.c \
 		free.c \
 		free2.c \
 		parsing_sub_token.c \
+		parsing_sub_token2.c \
 		parsing_command.c \
 		expand_utils.c
 

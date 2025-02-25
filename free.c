@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:06:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/02/24 17:50:14 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/24 18:25:48 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,72 +76,6 @@ void	free_command(t_command *command)
 		{
 			free(command->args);
 			command->args = NULL;
-		}
-	}
-}
-
-void	free_data(t_data *data)
-{
-	int	i;
-
-	if (data)
-	{
-		if (data->input)
-		{
-			free(data->input);
-			data->input = NULL;
-		}
-		if (data->raw_tokens)
-		{
-			i = 0;
-			while (data->raw_tokens[i])
-			{
-				free(data->raw_tokens[i]);
-				data->raw_tokens[i] = NULL;
-				i++;
-			}
-			free(data->raw_tokens);
-			data->raw_tokens = NULL;
-		}
-		if (data->env)
-		{
-			i = 0;
-			while (data->env[i])
-			{
-				free(data->env[i]);
-				data->env[i] = NULL;
-				i++;
-			}
-			free(data->env);
-			data->env = NULL;
-		}
-		if (data->exp)
-		{
-			i = 0;
-			while (data->exp[i])
-			{
-				free(data->exp[i]);
-				data->exp[i] = NULL;
-				i++;
-			}
-			free(data->exp);
-			data->exp = NULL;
-		}
-		if (data->pids)
-		{
-			free(data->pids);
-			data->pids = NULL;
-		}
-		if (data->command)
-		{
-			free_command(data->command);
-			free(data->command);
-			data->command = NULL;
-		}
-		if (data->tokens)
-		{
-			free_tokens(data);
-			data->tokens = NULL;
 		}
 	}
 }

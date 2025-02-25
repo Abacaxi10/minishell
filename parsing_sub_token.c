@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:22:09 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/24 17:52:42 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:39:28 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,6 @@ int	number_of_sub_token(t_data *data, int i)
 	sub_token_count = 0;
 	sub_token_count = find_words(data, &i);
 	return (sub_token_count);
-}
-
-void	sub_token_quotes(t_token *token, t_data *data, int *i,
-		int *sub_token_count)
-{
-	int		start;
-	char	quote_type;
-
-	quote_type = data->content[(*i)++];
-	start = *i;
-	while (data->content[*i] && data->content[*i] != quote_type)
-		(*i)++;
-	token->sub_tokens[*sub_token_count] = malloc(sizeof(t_sub_token));
-	if (!token->sub_tokens[*sub_token_count])
-		return ;
-	if (quote_type == '\'')
-		token->sub_tokens[*sub_token_count]->type = TOKEN_SQUOTE;
-	else if (quote_type == '"')
-		token->sub_tokens[*sub_token_count]->type = TOKEN_DQUOTE;
-	token->sub_tokens[*sub_token_count]->content = ft_substr(data->content,
-			start, *i - start);
-	if (quote_type == '"')
-	{
-		token->sub_tokens[*sub_token_count]->content
-			= manage_dollar(token->sub_tokens[*sub_token_count]->content,
-				data);
-	}
-	(*sub_token_count)++;
-	if (data->content[*i] == quote_type)
-		(*i)++;
 }
 
 void	sub_token_word(t_token *token, t_data *data, int *i,

@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:33:24 by rabatist          #+#    #+#             */
-/*   Updated: 2025/02/24 17:53:10 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/24 18:40:11 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,79 +49,34 @@ char	*only_dollar(int *i, char *str, char *result)
 	return (result);
 }
 
-char	*expand_dollar(t_data *data, int *i, char *str, char *result)
+char	*get_var_name(char *str, int *i, int *j)
 {
-	char	*tmp;
-	char	*env_val;
 	char	*var;
-	int		j;
 
-	(*i)++;
-	j = (*i);
-	while (str[j] && (ft_isalnum(str[j]) || str[j] == '_'))
-		j++;
-	var = ft_substr(str, (*i), j - (*i));
-	if (!var)
-		return (result);
+	*j = *i;
+	while (str[*j] && (ft_isalnum(str[*j]) || str[*j] == '_'))
+		(*j)++;
+	var = ft_substr(str, *i, *j - *i);
+	return (var);
+}
+
+char	*get_env_val(char *var, t_data *data)
+{
+	char	*env_val;
+
 	env_val = get_env_value(var, data);
 	if (!env_val)
 		env_val = ft_strdup("");
-	if (!env_val)
-	{
-		free(var);
-		return (result);
-	}
-	tmp = ft_strjoin(result, env_val);
-	if (!tmp)
-	{
-		free(var);
-		free(env_val);
-		return (result);
-	}
-	free(result);
-	result = tmp;
-	free(var);
-	free(env_val);
-	(*i) = j;
-	return (result);
+	return (env_val);
 }
 
-char	*no_dollar(int *i, char *str, char *result)
+char	*append_env_value(char *result, char *env_val)
 {
-	char	buf[2];
 	char	*tmp;
 
-	buf[0] = str[(*i)];
-	buf[1] = '\0';
-	tmp = ft_strjoin(result, buf);
+	tmp = ft_strjoin(result, env_val);
 	if (!tmp)
 		return (result);
 	free(result);
-	result = tmp;
-	(*i)++;
-	return (result);
-}
-
-char	*manage_dollar(char *str, t_data *data)
-{
-	char	*result;
-	int		i;
-
-	i = 0;
-	result = ft_strdup("");
-	if (!result)
-		return (NULL);
-	while (str[i])
-	{
-		if (str[i] == '$' && str[i + 1] == '?')
-			result = dollar_question(data, &i, result);
-		else if (str[i] == '$' && (ft_isspace(str[i + 1]) == 1
-				|| str[i + 1] == '\0'))
-			result = only_dollar(&i, str, result);
-		else if (str[i] == '$')
-			result = expand_dollar(data, &i, str, result);
-		else
-			result = no_dollar(&i, str, result);
-	}
-	return (result);
+	return (tmp);
 }

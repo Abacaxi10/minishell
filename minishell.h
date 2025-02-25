@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:18:44 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/24 17:22:57 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/25 21:04:58 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_data
 
 // main.c
 void			start(t_data *data);
+void			free_test(t_data *data);
 
 // init.c
 void			init_data(t_data *data);
@@ -183,6 +184,15 @@ void			unset_var_in_env(t_data *data, char *var_name);
 void			unset_var_in_exp(t_data *data, char *var_name);
 
 // expand.c
+char			*dollar_question(t_data *data, int *i, char *result);
+char			*only_dollar(int *i, char *str, char *result);
+char			*get_var_name(char *str, int *i, int *j);
+char			*get_env_val(char *var, t_data *data);
+char			*append_env_value(char *result, char *env_val);
+
+// expand2.c
+char			*expand_dollar(t_data *data, int *i, char *str, char *result);
+char			*no_dollar(int *i, char *str, char *result);
 char			*manage_dollar(char *str, t_data *data);
 
 // expand_utils.c
@@ -197,6 +207,8 @@ int				g_signals(int new);
 // make_env.c
 void			make_env(t_data *data, char **env);
 void			make_exp(t_data *data, char **env);
+void			make_fake_env(t_data *data);
+void			make_fake_exp(t_data *data);
 
 // parsing.c
 void			parsing(t_data *data);
@@ -205,23 +217,30 @@ void			parsing(t_data *data);
 int				join_sub_token(t_data *data, t_token *token, int j);
 void			free_sub_tokens(t_token *token);
 
-// // parsing_sub_token.c
+// parsing_sub_token.c
 int				find_words(t_data *data, int *i);
 int				number_of_sub_token(t_data *data, int i);
-void			sub_token_quotes(t_token *token, t_data *data, int *i,
-					int *sub_token_count);
 void			analyse_quotes(t_token *token, t_data *data);
 void			sub_token_word(t_token *token, t_data *data, int *i,
 					int *sub_token_count);
-// free.c
-void			free_data(t_data *data);
-void			free_all_exit(t_data *data, int exit_code);
-void			free_command(t_command *command);
-void			free_test(t_data *data);
 
-// free2.c
+// parsing_sub_token.c
+void			sub_token_quotes(t_token *token, t_data *data, int *i,
+					int *sub_token_count);
+int				sub_token_quotes2(t_token *token, t_data *data, char quote_type,
+					int *sub_token_count);
+
+// free.c
 void			free_sub_token(t_sub_token *sub_token);
 void			free_token(t_token *token);
 void			free_tokens(t_data *data);
+void			free_command(t_command *command);
+void			free_all_exit(t_data *data, int exit_code);
+
+// free2.c
+void			free_data(t_data *data);
+void			free_data2(t_data *data);
+void			free_data3(t_data *data);
+void			free_data4(t_data *data);
 
 #endif

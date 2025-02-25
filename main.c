@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:56:15 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/21 17:14:28 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/25 20:11:29 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,16 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	init_data(&data);
-	make_env(&data, env);
-	make_exp(&data, env);
+	if (env && env[0])
+	{
+		make_env(&data, env);
+		make_exp(&data, env);
+	}
+	else
+	{
+		make_fake_env(&data);
+		make_fake_exp(&data);
+	}
 	signals();
 	start(&data);
 	free_data(&data);
