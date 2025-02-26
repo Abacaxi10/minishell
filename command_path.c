@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:03:09 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/24 17:51:27 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:37:58 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	*find_path(t_data *data)
 	char	*path;
 	int		i;
 
+	path = NULL;
 	i = 0;
 	while (data->env[i])
 	{

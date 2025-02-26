@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+         #
+#    By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/05 19:02:17 by nbonnet           #+#    #+#              #
-#    Updated: 2025/02/24 20:38:55 by nbonnet          ###   ########.fr        #
+#    Updated: 2025/02/26 16:51:31 by rabatist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRCS = 	builtins/pwd.c \
 		init.c \
 		builtins_utils.c \
 		redirect.c \
-		make_env.c \
+		make_env_exp.c \
+		make_env_exp2.c \
+		update_shlvl.c \
 		expand.c \
 		expand2.c \
 		signals.c \

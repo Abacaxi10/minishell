@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:56:15 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/25 20:11:29 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:07:17 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	main(int ac, char **av, char **env)
 		make_fake_env(&data);
 		make_fake_exp(&data);
 	}
+	update_shlvl_env(&data);
+	update_shlvl_exp(&data);
 	signals();
 	start(&data);
 	free_data(&data);

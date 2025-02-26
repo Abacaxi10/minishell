@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:18:44 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/25 21:04:58 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:05:35 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,11 +204,21 @@ void			signals(void);
 void			sig_int(int signal);
 int				g_signals(int new);
 
-// make_env.c
+// make_env_exp.c
 void			make_env(t_data *data, char **env);
 void			make_exp(t_data *data, char **env);
 void			make_fake_env(t_data *data);
 void			make_fake_exp(t_data *data);
+
+// make_env_exp2.c
+void	make_fake_env2(t_data *data, char *cwd);
+void	make_fake_exp2(t_data *data, char *cwd);
+
+//update_shlvl.c
+void	update_shlvl_env(t_data *data);
+void	increase_shlvl_env(t_data *data, char *shlvl, int i);
+void	update_shlvl_exp(t_data *data);
+void	increase_shlvl_exp(t_data *data, char *shlvl, int i);
 
 // parsing.c
 void			parsing(t_data *data);
