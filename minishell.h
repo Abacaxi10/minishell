@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:18:44 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/26 18:05:35 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:53:59 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,17 +146,21 @@ void			update_old_pwd_env(t_data *data);
 void			update_old_pwd_env2(t_data *data, char *pwd);
 void			update_old_pwd_exp(t_data *data);
 void			update_old_pwd_exp2(t_data *data, char *pwd);
+
 // cd2.c
 void			ft_cd2(t_data *data);
 int				ft_cd3(t_data *data);
 void			update_pwd_env(t_data *data);
 void			update_pwd_exp(t_data *data);
 char			*ft_get_home(t_data *data);
+
 // echo.c
 int				ft_echo(t_data *data);
 void			ft_echo_print(t_data *data, int i, int line);
+
 // env.c
 int				ft_env(t_data *data);
+
 // exit.c
 void			ft_exit(t_data *data);
 int				ft_exit2(t_data *data);
@@ -169,6 +173,7 @@ int				is_valid_var_name(char *var);
 void			export_without_args(t_data *data);
 void			update_exp_without_equal(t_data *data, char *str);
 int				ft_export(t_data *data);
+
 // export2.c
 void			update_env_with_equal(t_data *data, char *str);
 void			update_env_with_equal2(t_data *data, char *str, int i);
@@ -178,6 +183,7 @@ void			valid_var_name(t_data *data, int i);
 
 // pwd.c
 int				ft_pwd(void);
+
 // unset.c
 int				ft_unset(t_data *data);
 void			unset_var_in_env(t_data *data, char *var_name);
