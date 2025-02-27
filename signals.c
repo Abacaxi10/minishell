@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:29:47 by rabatist          #+#    #+#             */
-/*   Updated: 2025/02/15 00:17:22 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/27 14:16:37 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	g_signals(int new)
 {
-	static int	value;
+	static int	value = 0;
 
 	if (new == -1)
 		return (value);

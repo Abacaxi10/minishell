@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:56:58 by nbonnet           #+#    #+#             */
-/*   Updated: 2025/02/24 17:50:42 by nbonnet          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:06:29 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,16 @@ int	start_exec(t_data *data)
 	return (0);
 }
 
+void	sig_quit(int sig)
+{
+	(void)sig;
+	printf("Quit (core dumped)\n");
+}
+
 int	process_command_line(t_data *data)
 {
 	g_signals(1);
+	signal(SIGQUIT, &sig_quit);
 	data->pid_index = 0;
 	data->pids = malloc(sizeof(pid_t) * (data->token_count + 1));
 	if (!data->pids)
@@ -53,6 +60,7 @@ int	process_command_line(t_data *data)
 		return (1);
 	wait_for_children(data);
 	g_signals(0);
+	signal(SIGQUIT, SIG_IGN);
 	return (0);
 }
 
